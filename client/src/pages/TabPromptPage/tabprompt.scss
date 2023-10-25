@@ -1,0 +1,122 @@
+@import '../../stylesheets/variables.scss';
+
+#prompt-studio-container {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    color: #FFFFFFFF;
+    background-color: $secondaryBackColor;
+
+    .left-sidebar {
+        display: flex;
+        flex-direction: column;
+        border-color: hsla(0, 0%, 100%, .1);
+        padding-top: 1.5rem;
+        overflow-y: auto;
+        height: calc(100vh - 153px);
+
+        .field-button {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            position: sticky;
+            z-index: 10;
+            padding-top: 1rem;
+            padding-bottom: .5rem;
+            bottom: 0;
+            background-color: $secondaryBackColor;
+            border-top: 1px solid #515151;
+        }
+    }
+
+    .main-content {
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border-left-width: 1px;
+        border-right-width: 1px;
+        border-color: hsla(0, 0%, 100%, .1);
+        height: calc(100vh - 129px);
+        background-color: $primaryBackColor;
+
+        .draggable-bounds {
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            .top-toolbar {
+                position: sticky;
+                margin: 0;
+                padding-left: 0;
+                padding-right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                top: 0;
+                z-index: 1000;
+                background-color: #1c1c27;
+                border-bottom: 1px solid #2A2C36;
+                padding: 16px;
+
+                .filter-box {
+                    overflow-x: auto;
+
+                    .scroll-bar {
+                        display: inline-flex;
+                        gap: 8px;
+                        padding-bottom: 5px;
+                    }
+                }
+            }
+
+            .scroll-container {
+                padding: 2.5rem;
+                padding-top: 1.25rem;
+                background-color: #1c1c27;
+
+                .scroll-container-outbox {
+                    display: 'flex';
+                    flex-direction: 'row';
+                    place-content: 'stretch center';
+                    box-sizing: 'border-box';
+                    width: '100%';
+                    gap: '16px';
+
+                    .scroll-container-inbox {
+                        display: 'flex';
+                        flex-direction: 'column';
+                        place-content: 'stretch flex-start';
+                        flex: '1 1 0%';
+                        width: '0px';
+                        gap: '16px';
+
+                        .grid-box {
+                            display: grid;
+                            gap: .5rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (min-width:1024px) {
+            grid-column: span 3/span 3
+        }
+
+        @media (min-width:1280px) {
+            grid-column: span 4/span 4
+        }
+    }
+
+    .sesstion-list {
+        text-align: start;
+    }
+
+    @media (min-width:1024px) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+
+    @media (min-width:1280px) {
+        // grid-column: span 3/span 3;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}

@@ -1,0 +1,10 @@
+.tableHeader {
+  font-size: 0.8rem;
+  color: rgb(123, 128, 154);
+}
+
+.tableHeaderAlignLeft {
+  text-align: left;
+  font-size: 0.8rem;
+  color: rgb(123, 128, 154);
+}

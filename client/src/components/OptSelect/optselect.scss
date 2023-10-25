@@ -1,0 +1,75 @@
+@import '../../stylesheets/variables.scss';
+
+#opt-select {
+    display: flex;
+    flex-direction: column;
+    row-gap: .25rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border: 0px;
+
+    label {
+        font-weight: 700;
+        text-align: left;
+        color: #FFFFFFFF;
+    }
+
+    .opt-select-container {
+        position: relative;
+        margin-top: .25rem;
+        border-radius: .5rem;
+        border-width: 1px;
+        border-color: hsla(0, 0%, 100%, .1);
+        font-size: .875rem;
+        line-height: 1.25rem;
+        color: #F4F4F5;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+
+        &::placeholder {
+            color: #52525B;
+        }
+
+        &:focus {
+            border-color: hsla(0, 0%, 100%, .2)
+        }
+
+        select {
+            font-family: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0;
+            text-transform: none;
+            width: 100%;
+            background-color: transparent;
+            // padding: .75rem 1rem;
+            padding: 8px 16px;
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.5rem;
+        }
+
+        option {
+            color: #000000;
+        }
+
+        svg {
+            pointer-events: none;
+            position: absolute;
+            right: .75rem;
+            top: 9px;
+            color: #71717A;
+        }
+    }
+
+    @media (min-width:768px) {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}

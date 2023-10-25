@@ -1,0 +1,83 @@
+# Node.js React Web App to Linux on Azure
+# Build a Node.js React app and deploy it to Azure as a Linux web app.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+variables:
+
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: 'd4739ac3-e48a-4023-b1a0-9b985c63e097'
+
+  # Web app name
+  webAppName: 'revolutionai'
+
+  # Environment name
+  environmentName: 'revolutionai'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+  DB_URL: 'mongodb://revolutionai-server:P6YCcgHfswiRq409uNqTWPzTOxXhKbTirV9cdwGjcpa9yVnFfmk5mdf60KLlAz1F66kA0m6gdIg6ACDbbSTshQ==@revolutionai-server.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false'
+  PORT: '5001'
+  SECRET: 'SECRET'
+  FACEBOOK_APP_ID: '1126189318108211'
+  FACEBOOK_APP_SECRET: '438d52a1e9659d1d34e3da43bcc5028d'
+  GOOGLE_CLIENT_ID: '1090045890266-d575on4n4q8dj9ddjhinahpeb21lrgts.apps.googleusercontent.com'
+  GOOGLE_CLIENT_SECRET: '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'
+  JWT_SECRET: 'oL|!r`X4B!TQQBrSEL/`;I0ls|uBIb(<0_Uh|5?R|+=;4dsGN;Sh1=-.1|Qw1)-3'
+  SMTP_HOST: ''
+  SMTP_PORT: ''
+  SMTP_USER: ''
+  SMTP_PASS: ''
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+
+    steps:
+    - task: ArchiveFiles@2
+      displayName: 'Archive files'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        includeRootFolder: false
+        archiveType: zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        replaceExistingArchive: true
+
+    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      artifact: drop
+
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy
+    environment: $(environmentName)
+    pool:
+      vmImage: $(vmImageName)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureRmWebAppDeployment@4
+            displayName: 'Azure App Service Deploy: revolutionai'
+            inputs:
+              azureSubscription: $(azureSubscription)
+              appType: webAppLinux
+              WebAppName: $(webAppName)
+              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              RuntimeStack: 'NODE|16.16'
+              StartupCommand: 'cd server && npm start'
+              ScriptType: 'Inline Script'
+              InlineScript: |
+                    cd server && npm install
+                

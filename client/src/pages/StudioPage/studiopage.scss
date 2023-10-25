@@ -1,0 +1,23 @@
+.root-box {
+    fieldset {
+        border: none;
+    }
+
+    ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1c1c27;
+        border-radius: 10px
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #3b3b3b;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #454545;
+    }
+}

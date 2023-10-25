@@ -1,0 +1,28 @@
+.opt-img-dimen-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    input {
+        display: none;
+    }
+
+    label {
+        font-size: 11px;
+        width: 98px;
+        border-radius: 0.5rem;
+        border: 2px solid hsla(0, 0%, 100%, .3);
+        padding: 6px 0px 6px 0px;
+        text-align: center;
+        line-height: 1.25rem;
+        font-weight: 500;
+        color: #D4D4D8;
+    }
+
+    input:checked+label {
+        border-width: 2px;
+        border-color: #8e72ff;
+        background-color: #36363619;
+        color: #ffffff;
+    }
+}

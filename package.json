@@ -1,0 +1,23 @@
+{
+  "name": "revoluionai",
+  "version": "1.0.0",
+  "description": "az extension add --name azure-devops",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd ./client && npm start\" \"cd ./server && npm start \""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnida1989/revoluionai.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cnida1989/revoluionai/issues"
+  },
+  "homepage": "https://github.com/cnida1989/revoluionai#readme",
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "nodemon": "^2.0.22"
+  }
+}

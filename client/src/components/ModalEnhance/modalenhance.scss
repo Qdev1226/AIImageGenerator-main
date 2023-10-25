@@ -1,0 +1,40 @@
+.enhance-modal {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    box-shadow: 0px 11px 15px -7px #00000033, 0px 24px 38px 3px #00000023, 0px 9px 46px 8px #0000001E;
+    border: 1px solid rgb(30, 27, 38);
+    border-radius: 9px 9px;
+    background-color: #1c1c27;
+    padding: 4px;
+    width: calc(70vw);
+
+    .left-bar {
+        .origin-image {
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+        }
+
+        .option-generate {
+            padding-top: 15px;
+        }
+    }
+
+    .right-bar {
+        .result-field {
+            display: grid;
+            gap: 0.5rem;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+        }
+    }
+}
